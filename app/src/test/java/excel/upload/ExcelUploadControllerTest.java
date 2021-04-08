@@ -7,12 +7,8 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.http.MediaType;
 import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.web.multipart.MultipartRequest;
-
-import java.nio.charset.StandardCharsets;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.multipart;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @WebMvcTest(ExcelUploadController.class)
@@ -32,7 +28,7 @@ class ExcelUploadControllerTest {
                 "file",
                 "hello.xlsx",
                 MediaType.TEXT_PLAIN_VALUE,
-                "Hello, World!".getBytes()
+                "Hello ExcelWorld!".getBytes()
         );
     }
 
