@@ -2,6 +2,8 @@ package excel.upload;
 
 import org.apache.commons.io.FilenameUtils;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.stereotype.Service;
@@ -13,6 +15,7 @@ import java.io.IOException;
 public class ExcelUploadService {
     public void uploadProduct(MultipartFile file) throws IOException {
         Workbook workbook = MakeWorkBooK(file);
+        Sheet sheet = workbook.getSheetAt(0);
     }
 
     private Workbook MakeWorkBooK(MultipartFile file) throws IOException {
