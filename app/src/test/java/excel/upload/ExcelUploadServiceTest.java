@@ -1,5 +1,6 @@
 package excel.upload;
 
+import org.apache.commons.io.FilenameUtils;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
@@ -33,6 +34,12 @@ class ExcelUploadServiceTest {
         Sheet workSheet = workbook.getSheetAt(0);
         Row firstRow = workSheet.getRow(0);
         assertThat(firstRow.getCell(0).getStringCellValue()).isEqualTo("상품명");
+    }
+
+    @Test
+    void testExtension(){
+        String extension = FilenameUtils.getExtension(file.getFilename());
+        assertThat(extension).isEqualTo("xlsx");
     }
 
 }
