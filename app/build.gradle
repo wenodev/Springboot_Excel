@@ -13,6 +13,12 @@ repositories {
 }
 
 dependencies {
+
+    //POI
+    compile group: 'org.apache.poi', name: 'poi', version: '4.0.0'
+    compile group: 'org.apache.poi', name: 'poi-ooxml', version: '4.0.0'
+    compile group: 'commons-io', name: 'commons-io', version: '2.6'
+
     //web
     implementation 'org.springframework.boot:spring-boot-starter-web'
 
