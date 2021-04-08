@@ -12,6 +12,12 @@ import org.springframework.web.multipart.MultipartFile;
 @RestController
 public class ExcelUploadController {
 
+    private final ExcelUploadService excelUploadService;
+
+    public ExcelUploadController(ExcelUploadService excelUploadService) {
+        this.excelUploadService = excelUploadService;
+    }
+
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping
     public void uploadProduct(@RequestParam("file")MultipartFile file){
