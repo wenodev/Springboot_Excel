@@ -4,8 +4,14 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.http.MediaType;
+import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.web.multipart.MultipartRequest;
 
+import java.nio.charset.StandardCharsets;
+
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.multipart;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -14,15 +20,25 @@ class ExcelUploadControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
+
+    private MockMultipartFile file;
+
     private static final String BASE_URL = "/upload/product";
+
 
     @BeforeEach
     void setUp() {
+        file = new MockMultipartFile(
+                "file",
+                "hello.xlsx",
+                MediaType.TEXT_PLAIN_VALUE,
+                "Hello, World!".getBytes()
+        );
     }
 
     @Test
     void uploadProduct() throws Exception {
-        mockMvc.perform(post(BASE_URL))
+        mockMvc.perform(multipart(BASE_URL).file(file))
                 .andExpect(status().isCreated());
     }
 
