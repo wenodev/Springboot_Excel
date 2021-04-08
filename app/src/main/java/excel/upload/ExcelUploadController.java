@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
+
 @RequestMapping("/upload/product")
 @RestController
 public class ExcelUploadController {
@@ -20,7 +22,7 @@ public class ExcelUploadController {
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping
-    public void uploadProduct(@RequestParam("file")MultipartFile file){
+    public void uploadProduct(@RequestParam("file")MultipartFile file) throws IOException {
         excelUploadService.uploadProduct(file);
     }
 }
