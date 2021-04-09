@@ -1,4 +1,4 @@
-package excel.upload;
+package excel.upload.entity;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

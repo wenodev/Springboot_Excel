@@ -1,4 +1,4 @@
-package excel.upload;
+package excel.upload.entity;
 
 import lombok.Builder;
 import lombok.Getter;

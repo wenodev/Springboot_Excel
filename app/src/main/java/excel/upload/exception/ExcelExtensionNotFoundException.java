@@ -1,4 +1,4 @@
-package excel.upload;
+package excel.upload.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
