@@ -11,7 +11,6 @@ function App() {
       <Route exact component={ProductList} path="/products" />
       <Route exact component={ProductDetail} path="/products/:id" />
       <Route component={UploadFrom} path="/upload" />
-      {/* <ProductList /> */}
     </div>
   );
 }

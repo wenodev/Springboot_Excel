@@ -2,6 +2,7 @@ package excel.upload.service;
 
 import excel.upload.entity.Product;
 import excel.upload.entity.ProductRepository;
+import excel.upload.exception.ProductNotFoundException;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -18,5 +19,9 @@ public class ProductService {
 
     public List<Product> list() {
         return productRepository.findAll();
+    }
+
+    public Product detail(Long id) {
+        return productRepository.findById(id).orElseThrow(()->new ProductNotFoundException("no product id : " + id));;
     }
 }
