@@ -1,7 +1,6 @@
 package excel.upload;
 
 import org.apache.commons.io.FilenameUtils;
-import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
@@ -11,6 +10,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.core.io.ClassPathResource;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -31,9 +32,34 @@ class ExcelUploadServiceTest {
     @Test
     void getWorkBookData() throws IOException {
         Workbook workbook = new XSSFWorkbook(file.getInputStream());
-        Sheet workSheet = workbook.getSheetAt(0);
-        Row firstRow = workSheet.getRow(0);
-        assertThat(firstRow.getCell(0).getStringCellValue()).isEqualTo("상품명");
+        Sheet sheet = workbook.getSheetAt(0);
+
+        int name = 0; // 필수값
+        int price = 1; // 필수값
+        int weight = 2; // 선택값
+        int description = 3; // 필수값
+        int imgUrl = 4; // 필수값
+
+        for (Row row : sheet){
+
+            //1번째 row 건너뛰기
+            if (row.getRowNum() == 0){
+                continue;
+            }
+
+            // 필수값체크
+            if (row.getCell(name) == null || row.getCell(price) == null || row.getCell(description) == null || row.getCell(imgUrl) == null){
+                throw new RequisiteException(row.getRowNum() + "번째 Row에 필수값을 확인하세요.");
+            }
+
+            Product product = Product.builder()
+                    .name(row.getCell(name).getStringCellValue())
+                    .price((int) row.getCell(price).getNumericCellValue())
+                    .weight((row.getCell(weight) == null) ? null : row.getCell(weight).getNumericCellValue())
+                    .description(row.getCell(description).getStringCellValue())
+                    .imgUrl(row.getCell(imgUrl).getStringCellValue())
+                    .build();
+        }
     }
 
     @Test
