@@ -22,6 +22,6 @@ public class ProductService {
     }
 
     public Product detail(Long id) {
-        return productRepository.findById(id).orElseThrow(()->new ProductNotFoundException("no product id : " + id));;
+        return productRepository.findById(id).orElseThrow(()->new ProductNotFoundException("no product id : " + id));
     }
 }
