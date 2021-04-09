@@ -9,10 +9,19 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.transaction.Transactional;
 import java.io.IOException;
 
+@Transactional
 @Service
 public class ExcelUploadService {
+
+    private final ProductRepository productRepository;
+
+    public ExcelUploadService(ProductRepository productRepository) {
+        this.productRepository = productRepository;
+    }
+
     public void uploadProduct(MultipartFile file) throws IOException {
         Workbook workbook = MakeWorkBooK(file);
         Sheet sheet = workbook.getSheetAt(0);
