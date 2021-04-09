@@ -19,6 +19,6 @@ public class ProductController {
 
     @GetMapping("/products")
     public List<Product> list(){
-        return null;
+        return productService.list();
     }
 }

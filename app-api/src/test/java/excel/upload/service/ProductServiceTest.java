@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.mock;
@@ -24,7 +25,6 @@ class ProductServiceTest {
 
     @Test
     void testList(){
-
         Product product = Product.builder()
                 .id(1L)
                 .name("dummy-name-existed")
@@ -36,6 +36,7 @@ class ProductServiceTest {
 
         given(productRepository.findAll()).willReturn(List.of(product));
         List<Product> products = productService.list();
+        assertThat(products.get(0).getId()).isEqualTo(1L);
     }
 
 }
