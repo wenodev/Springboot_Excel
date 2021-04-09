@@ -8,4 +8,4 @@
  */
 
 rootProject.name = 'excel-upload'
-include('app')
+include('app-api')
