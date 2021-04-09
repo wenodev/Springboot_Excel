@@ -1,17 +1,13 @@
 export async function postExcel(file) {
+  console.log("file", file);
   const url = "http://localhost:8080/upload/product";
-
-  const formData = new FormData();
-  formData.append("file", file);
-
-  const response = await fetch(url, formData, {
+  const response = await fetch(url, {
     method: "POST",
-    headers: {
-      "Content-Type": "multipart/form-data",
-    },
+    body: file,
   });
-  const data = await response.json();
-  return data;
+  const result = await response.json();
+  console.log(result);
+  return result;
 }
 
 export async function fetchProducts() {
