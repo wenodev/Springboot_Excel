@@ -67,5 +67,4 @@ class ExcelUploadServiceTest {
         String extension = FilenameUtils.getExtension(file.getFilename());
         assertThat(extension).isEqualTo("xlsx");
     }
-
 }
