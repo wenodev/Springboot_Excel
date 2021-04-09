@@ -5,9 +5,8 @@ export async function postExcel(file) {
     method: "POST",
     body: file,
   });
-  const result = await response.json();
-  console.log(result);
-  return result;
+  const data = await response.json();
+  return data;
 }
 
 export async function fetchProducts() {
