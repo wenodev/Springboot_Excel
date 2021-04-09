@@ -20,4 +20,7 @@ public class ProductController {
     public List<Product> list(){
         return productService.list();
     }
+
+    
+
 }
