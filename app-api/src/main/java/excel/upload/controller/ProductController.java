@@ -21,10 +21,10 @@ public class ProductController {
     public List<Product> list(){
         return productService.list();
     }
+
     @GetMapping("/products/{id}")
     public  Product detail(@PathVariable Long id) {
         return productService.detail(id);
     }
-
 
 }

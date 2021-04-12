@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import * as API from "../services/api";
 
 export default function ProductList() {
   const [products, setProducts] = useState();
+
   useEffect(() => {
     API.fetchProducts()
       .then((response) => {
@@ -12,18 +14,18 @@ export default function ProductList() {
       .catch((e) => {
         console.log(e);
       });
-  }, [products]);
-
-  function goDetail() {}
+  }, []);
 
   return (
     <div>
       {products
         ? products.map((product) => (
-            <div>
+            <div key={product.id}>
               <span>{product.name}</span>
               <span>{product.price}</span>
-              <button onClick={goDetail}>자세히보기</button>
+              <Link to={`/products/${product.id}`}>
+                <button>자세히보기</button>
+              </Link>
             </div>
           ))
         : null}
